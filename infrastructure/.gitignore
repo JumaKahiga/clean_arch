@@ -1,0 +1,5 @@
+../.DS_Store
+../clean/
+architecture/core/__pycache__/
+architecture/employees/__pycache__/
+architecture/employees/migrations/__pycache__/
