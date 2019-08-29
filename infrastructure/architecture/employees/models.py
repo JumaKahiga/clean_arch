@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 # Create your models here.
@@ -32,3 +33,15 @@ class Employee(models.Model):
 	def save(self, *args, **kwargs):
 		self.clean_fields()
 		super().save(*args, **kwargs)
+
+	def set_not_available(self, supervisor, value):
+		if not self.supervisor == supervisor:
+			raise ValidationError(
+				"You are not {}'s supervisor".format(self.first_name))
+
+		self.is_available = value
+		self.save()
+
+
+	def __str__(self):
+		return self.email
